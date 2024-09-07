@@ -1,8 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root{
     --gray: #A798A8;
     --pale: #B72DFB;
     --dark: #311735;
     --xpale: #F3E7FB;
+    --white: #ffffff;
 }
 
+body{
+    background-color: var(--xpale);
+    font-family: 'Work Sans';
+    position: relative;
+}
 
+.image-block{
+    background-image: url('/assets/images/background-pattern-desktop.svg');
+    width: 100%;
+    height: 300px;
+    position: relative;
+
+}
+
+.container{
+    background-color:var(--white);
+    border: none;
+    border-radius: 10px;
+    width: 600px;
+    height: fit-content;
+    padding: 20px;
+    margin: 0 auto;
+    position: relative;
+    top:-100px;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+}
+
+.card{
+   padding: 10px;
+}
+
+.card-title{
+    color: var(--dark);
+    padding: 15px;
+}
+
+.question-text{
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.question-text:hover{
+    color: var(--pale);
+    cursor: pointer;
+}
+
+.answer-text{
+    font-size: 16px;
+    color: var(--gray);
+    padding:15px;
+}
+
+.attribution{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 5px;
+    color: var(--dark);
+}
+
+.attribution a {
+    text-decoration: none;
+    color: var(--pale);
+}
+
+.attribution a:hover{
+    cursor: pointer;
+    color: var(--gray)
+}
