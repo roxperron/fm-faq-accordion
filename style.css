@@ -1,3 +1,4 @@
+/************ GENERAL ************/
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
@@ -17,36 +18,33 @@
 body {
   background-color: var(--xpale);
   font-family: "Work Sans";
-  position: relative;
 }
 
-.image-block {
+/************ ACCORDION ************/
+
+.accordion-image {
   background-image: url("/assets/images/background-pattern-desktop.svg");
   width: 100%;
-  height: 310px;
+  height: 300px;
   position: relative;
   background-position: center;
+  background-size: cover;
 }
 
-.container {
+.accordion-container {
   background-color: var(--white);
   border: none;
   border-radius: 10px;
-  width: 700px;
-  height: fit-content;
-  padding: 20px;
+  max-width: 700px;
   margin: 0 auto;
+  padding: 20px;
   position: relative;
   top: -100px;
   z-index: 1;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card {
-  padding: 10px;
-}
-
-.card-header {
+.accordion-header {
   display: flex;
   align-items: center;
   align-content: center;
@@ -58,49 +56,79 @@ body {
   font-size: 36px;
 }
 
-.card-title {
+.accordion-title {
   color: var(--dark);
   padding: 15px;
   font-size: 48px;
-  font-weight: 700;
 }
 
-.question-container {
+.accordion-question {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  font-size: 16px;
+  color: var(--dark);
+  padding: 10px 0;
 }
 
-/* .fa-minus{
-    display: none;
-} */
-
-.fa-plus {
+.accordion-question .fa-plus {
+  display: inline;
   color: var(--white);
   background-color: var(--pale);
   font-size: 15px;
   border-radius: 15px;
   padding: 5px;
-}
-
-.question-text {
-  font-size: 18px;
-  color: var(--dark);
-  white-space: nowrap;
-}
-
-
-.question-text:hover {
-  color: var(--pale);
+  margin: 10px;
   cursor: pointer;
 }
 
-.answer-text {
-  font-size: 16px;
-  color: var(--gray);
-  padding: 20px;
+.accordion-question .fa-minus {
+  display: none;
+  color: var(--white);
+  background-color: var(--dark);
+  font-size: 15px;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
 }
 
+.accordion-question h3:hover {
+  color: var(--pale);
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--xpale);
+  padding: 10px;
+  margin: 10px;
+}
+
+.accordion-item.active .accordion-answer {
+  display: block;
+}
+
+.accordion-item.active .fa-plus {
+  display: none;
+}
+
+.accordion-item.active .fa-minus {
+  display: inline;
+}
+
+.accordion-lastItem {
+  padding: 10px;
+  margin: 10px;
+}
+
+.accordion-answer {
+  display: none;
+  font-size: 16px;
+  color: var(--gray);
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+/************ ATTRIBUTION ************/
 .attribution {
   display: flex;
   justify-content: center;
