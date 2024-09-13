@@ -1,35 +1,29 @@
-const showMore = document.querySelectorAll(".fa-plus");
-const showLess = document.querySelectorAll(".fa-minus");
-const answer = document.querySelectorAll(".accordion-answer");
+const accordionContainer = document.querySelector(".accordion-container");
 
-// Function to reset all answers
+
+accordionContainer.addEventListener("click", (e) => {
+  if (e.target.closest(".accordion-toggle")) {
+    const item = e.target.closest(".accordion-item");
+    const answer = item.querySelector(".accordion-answer");
+
+    if (item.classList.contains("active")) {
+
+      item.classList.remove("active");
+      answer.style.display = "none";
+      e.target.setAttribute("aria-expanded", false);
+    } else {
+      resetAll();
+      item.classList.add("active");
+      answer.style.display = "block";
+      e.target.setAttribute("aria-expanded", true);
+    }
+  }
+});
+
 const resetAll = () => {
-  answer.forEach((container) => {
-    container.style.display = "none";
-  });
-  showMore.forEach((icon) => {
-    icon.style.display = "block";
-  });
-  showLess.forEach((icon) => {
-    icon.style.display = "none";
+  document.querySelectorAll(".accordion-item").forEach((item) => {
+    item.classList.remove("active");
+    item.querySelector(".accordion-answer").style.display = "none";
+    item.querySelector(".accordion-toggle").setAttribute("aria-expanded", false);
   });
 };
-
-// Function to show accordion answer
-showMore.forEach((plus, index) => {
-  plus.addEventListener("click", () => {
-    resetAll();
-    answer[index].style.display = "block";
-    showMore[index].style.display = "none";
-    showLess[index].style.display = "block";
-  });
-});
-
-// Function to hide accordion answer
-showLess.forEach((minus, index) => {
-  minus.addEventListener("click", () => {
-    answer[index].style.display = "none";
-    showMore[index].style.display = "block";
-    showLess[index].style.display = "none";
-  });
-});
