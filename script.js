@@ -1,29 +1,40 @@
 const accordionContainer = document.querySelector(".accordion-container");
 
+accordionContainer.addEventListener("click", handleAccordionClick);
 
-accordionContainer.addEventListener("click", (e) => {
-  if (e.target.closest(".accordion-toggle")) {
-    const item = e.target.closest(".accordion-item");
-    const answer = item.querySelector(".accordion-answer");
+function handleAccordionClick(e) {
+  const target = e.target;
+  if (!isAccordionToggle(target)) return;
 
-    if (item.classList.contains("active")) {
+  const item = target.closest(".accordion-item");
+  const answer = item.querySelector(".accordion-answer");
 
-      item.classList.remove("active");
-      answer.style.display = "none";
-      e.target.setAttribute("aria-expanded", false);
-    } else {
-      resetAll();
-      item.classList.add("active");
-      answer.style.display = "block";
-      e.target.setAttribute("aria-expanded", true);
-    }
-  }
-});
+  item.classList.contains("active")
+    ? closeAccordionItem(item, answer, target)
+    : openAccordionItem(item, answer, target);
+}
 
-const resetAll = () => {
-  document.querySelectorAll(".accordion-item").forEach((item) => {
-    item.classList.remove("active");
-    item.querySelector(".accordion-answer").style.display = "none";
-    item.querySelector(".accordion-toggle").setAttribute("aria-expanded", false);
+function closeAccordionItem(item, answer, toggleElement) {
+  item.classList.remove("active");
+  answer.style.display = "none";
+  toggleElement.setAttribute("aria-expanded", "false");
+}
+
+function openAccordionItem(item, answer, toggleElement) {
+  closeAllAccordionItems();
+  item.classList.add("active");
+  answer.style.display = "block";
+  toggleElement.setAttribute("aria-expanded", "true");
+}
+
+function isAccordionToggle(target) {
+  return target.closest(".accordion-toggle");
+}
+
+function closeAllAccordionItems() {
+  document.querySelectorAll(".accordion-item.active").forEach((activeItem) => {
+    const answer = activeItem.querySelector(".accordion-answer");
+    const toggle = activeItem.querySelector(".accordion-toggle");
+    closeAccordionItem(activeItem, answer, toggle);
   });
-};
+}
